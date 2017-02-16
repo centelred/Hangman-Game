@@ -1,0 +1,83 @@
+body {
+    background-color:grey;
+    width:960px;
+    margin:0 auto;
+}
+
+h1 {
+    font-size:3em;
+    text-align:center;
+    padding:15px;
+    color:red;
+}
+
+h2 {
+    font-size:2.0em;
+    padding-top:20px;
+}
+
+h3 {
+    font-size:2.0em;
+    padding:5px;
+}
+
+p {
+    font-size:4.0em;
+    padding-top:125px;
+}
+
+.dsplyLtr {
+    font-size:4.0em;
+    padding-top:125px;
+}
+
+.container {
+    width:960px;
+    margin:auto;
+}
+
+.header {
+    background-color:black;
+    margin-bottom:10px;
+}
+
+.message {
+    width:955px;
+    height:50px;
+    background-color:#aaa;
+    margin-bottom:10px;
+    text-align:center;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
+}
+
+.life, .guess, .win {
+    float:left;
+    width:31%;
+    height:375px;
+    text-align:center;
+    background-color:#aaa;
+    border-style:solid;
+    border-width:1px;
+    border-color:black;
+    margin-bottom:10px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#guessId {
+    background-color:black;
+    height:50px;
+    width:50px;
+    font-size:45px;
+    color:red;
+    text-align:center;
+}
+
+.footer {
+    clear:both;
+    background-color:black;
+    width:960px;
+    text-align:center;
+}

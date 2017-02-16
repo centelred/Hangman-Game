@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Hangman!</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+<body>
+<div class="container">
+
+	<div class="row col-md-12">
+    	<div class="header">
+    	<h1>Hangman!</h1>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="message col-md-12">
+    	<h3 id="mess">messages</h3>
+    	</div>
+    </div>
+
+	<div class="row">
+    	<div class="main1 col-md-4">
+    		<div class="life">
+    		<h2>Life Count</h2>
+    		<div id="lifecount"><p>-</p></div>
+    		</div>
+    	</div>
+    	<div class="main2 col-md-4">
+    		<div class="guess">
+    		<h2>Guess Here</h2>
+    		<div id="guesscount">
+
+            <p>
+    		<span id="guessed"></span>
+    		</p>
+    		</div>
+    		</div>
+    	</div>
+    	<div class="main3 col-md-4">
+    		<div class="win">
+    		<h2>Wins</h2>
+    		<div id="wincount"><p>-</p></div>
+    		</div>
+    	</div>
+	</div>
+
+	<div class="row">
+		<div class="footer">
+			<h1>*******</h1>
+		</div>
+	</div>
+
+</div>
+
+
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+
+</html>
