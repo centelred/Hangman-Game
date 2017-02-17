@@ -1,89 +1,234 @@
-//create an array of words
-var words = [
-    "javascript",
-    "hypertext",
-    "cascading",
-    "function",
-    "variable",
-    "array",
-    "document",
-    "script",
-    "class",
-    "loop",
-    "stylesheet",
-    "jquery",
-    "scope",
-    "matrix"
-];
+window.onload = function() {
 
-//life counter section, count down from 7.
-var lifeCounter = 7
-var html = "<p>" + lifeCounter + "</p>"
+    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+        't', 'u', 'v', 'w', 'x', 'y', 'z'
+    ];
 
-for (var i = 7; i > 0; i--) {
-    if (lifeCounter[i] === 0) {
-        document.getElementById("mess").innerHTML = "You Lose";
-    } else {
-        document.getElementById("lifecount").innerHTML = html;
-    }
-}
+    var categories; // Array of topics
+    var chosenCategory; // Selected category
+    var getHint; // Word getHint
+    var word; // Selected word
+    var guess; // Guess
+    var guesses = []; // Stored guesses
+    var lives; // Lives
+    var counter; // Count correct guesses
+    var space; // Number of spaces in word '-'
+
+    // Get elements
+    var showLives = document.getElementById("mylives");
+    var showCategory = document.getElementById("scategory");
+    var getHint = document.getElementById("hint");
+    var showClue = document.getElementById("clue");
 
 
-//wins counter section, count up to 7
-var winCounter = 0
-var html = "<p>" + winCounter + "</p>"
 
-for (var j = 0; j < 7; j++) {
-    if (winCounter === 7) {
-        document.getElementById("mess").innerHTML = "You Win!";
-    } else {
-        document.getElementById("wincount").innerHTML = html;
-    }
-}
+    // create alphabet ul
+    var buttons = function() {
+        myButtons = document.getElementById('buttons');
+        letters = document.createElement('ul');
 
-
-var userText = document.getElementById("guessed");
-//listen for keys
-document.onkeyup = function() {
-    userText.textContent = event.key;
-    var userText = document.getElementById("guess")
-    //choosing random word    
-    var word = words[Math.floor(Math.random() * words.length)];
-
-    //create answer array
-    var answerArray = [];
-    for (var i = 0; i < word.length; i++) {
-        answerArray[i] = "_";
+        for (var i = 0; i < alphabet.length; i++) {
+            letters.id = 'alphabet';
+            list = document.createElement('li');
+            list.id = 'letter';
+            list.innerHTML = alphabet[i];
+            check();
+            myButtons.appendChild(letters);
+            letters.appendChild(list);
+        }
     }
 
-    //remaining guesses
-    var remainingLetters = word.length;
 
-    //Game Loop
-    while (remainingLetters > 0) {
-        //player progress
-        var el = document.getElementById("mess");
-        el.innerHTML = answerArray.join(" ");
+    // Select Category
+    var selectCat = function() {
+        if (chosenCategory === categories[0]) {
+            categoryName.innerHTML = "Rappers";
+        } else if (chosenCategory === categories[1]) {
+            categoryName.innerHTML = "Basketball Players";
+        } else if (chosenCategory === categories[2]) {
+            categoryName.innerHTML = "Football Players";
+        }
+    }
 
-        //get guess
-        var guess = document.getElementById("mess").innerHTML = "Guess letter or click Cancel to quit.";
-        if (guess === null) {
-            //exit game
-            break;
-        } else if (guess.length !== 1) {
-            document.getElementById("mess").innerHTML = "Please enter a single letter.";
-        } else { //update game state
-            for (var j = 0; j < word.length; j++) {
-                if (word[j] === guess) {
-                    answerArray[j] = guess;
-                    remainingLetters--;
-                }
+    // Create guesses ul
+    result = function() {
+        wordHolder = document.getElementById('hold');
+        correct = document.createElement('ul');
+
+        for (var i = 0; i < word.length; i++) {
+            correct.setAttribute('id', 'my-word');
+            guess = document.createElement('li');
+            guess.setAttribute('class', 'guess');
+            if (word[i] === "-") {
+                guess.innerHTML = " ";
+                space = 1;
+            } else {
+                guess.innerHTML = "_";
+            }
+
+            guesses.push(guess);
+            wordHolder.appendChild(correct);
+            correct.appendChild(guess);
+        }
+    }
+
+    // Show lives
+    comments = function() {
+        showLives.innerHTML = "You have " + lives + " lives";
+        if (lives < 1) {
+            showLives.innerHTML = "Game Over";
+        }
+        for (var i = 0; i < guesses.length; i++) {
+            if (counter + space === guesses.length) {
+                showLives.innerHTML = "You Win!";
             }
         }
-        //end of game loop
     }
 
-    el.innerHTML = answerArray.join(" ");
-    document.getElementById("footer").innerHTML = "good job the answer was " + word + ".";
+    // Animate man
+    var animate = function() {
+        var drawMe = lives;
+        drawArray[drawMe]();
+    }
 
-};
+
+    // Hangman
+    canvas = function() {
+
+        myStickman = document.getElementById("stickman");
+        context = myStickman.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = "#fff";
+        context.lineWidth = 2;
+    };
+
+    head = function() {
+        myStickman = document.getElementById("stickman");
+        context = myStickman.getContext('2d');
+        context.beginPath();
+        context.arc(60, 25, 10, 0, Math.PI * 2, true);
+        context.stroke();
+    }
+
+    draw = function($pathFromx, $pathFromy, $pathTox, $pathToy) {
+
+        context.moveTo($pathFromx, $pathFromy);
+        context.lineTo($pathTox, $pathToy);
+        context.stroke();
+    }
+
+    frame1 = function() {
+        draw(0, 150, 150, 150);
+    };
+
+    frame2 = function() {
+        draw(10, 0, 10, 600);
+    };
+
+    frame3 = function() {
+        draw(0, 5, 70, 5);
+    };
+
+    frame4 = function() {
+        draw(60, 5, 60, 15);
+    };
+
+    torso = function() {
+        draw(60, 36, 60, 70);
+    };
+
+    rightArm = function() {
+        draw(60, 46, 100, 50);
+    };
+
+    leftArm = function() {
+        draw(60, 46, 20, 50);
+    };
+
+    rightLeg = function() {
+        draw(60, 70, 100, 100);
+    };
+
+    leftLeg = function() {
+        draw(60, 70, 20, 100);
+    };
+
+    drawArray = [rightLeg, leftLeg, rightArm, leftArm, torso, head, frame4, frame3, frame2, frame1];
+
+
+    // OnClick Function
+    check = function() {
+        list.onclick = function() {
+            var guess = (this.innerHTML);
+            this.setAttribute("class", "active");
+            this.onclick = null;
+            for (var i = 0; i < word.length; i++) {
+                if (word[i] === guess) {
+                    guesses[i].innerHTML = guess;
+                    counter += 1;
+                }
+            }
+            var j = (word.indexOf(guess));
+            if (j === -1) {
+                lives -= 1;
+                comments();
+                animate();
+            } else {
+                comments();
+            }
+        }
+    }
+
+
+    // Play
+    play = function () {
+        categories = [
+            ["kanye west", "migos", "young jeezy", "lil dicky", "joe budden", "fetty wap", "eminem"],
+            ["allen iverson", "brian scalabrine", "matt barnes", "sam cassell", "derrick rose"],
+            ["ray lewis", "tom brady", "gronk", "oj simpson", "richard sherman"]
+        ];
+
+        chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+        word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+        word = word.replace(/\s/g, "-");
+        console.log(word);
+        buttons();
+
+        guesses = [];
+        lives = 10;
+        counter = 0;
+        space = 0;
+        result();
+        comments();
+        selectCat();
+        canvas();
+    }
+
+    play();
+
+    // Hint
+
+    hint.onclick = function() {
+
+        hints = [
+            ["Did a song with coldplay", "Check my dab", "He put on for his city", "Will teach you how to save money", "Slept on lyricist", "The all seeing eye.", "Rap God"],
+            ["Practice", "Mamba", "30 Hours", "Ugliest player ever", "ACL 1st Round: never forget"],
+            ["Ravens former LB", "Deflated", "I Gronk", "The glove dont fit.", "Those Dreads!"]
+        ];
+
+        var categoryIndex = categories.indexOf(chosenCategory);
+        var hintIndex = chosenCategory.indexOf(word);
+        showClue.innerHTML = "Clue: - " + hints[categoryIndex][hintIndex];
+    };
+
+    // Reset
+
+    document.getElementById('reset').onclick = function() {
+        correct.parentNode.removeChild(correct);
+        letters.parentNode.removeChild(letters);
+        showClue.innerHTML = "";
+        context.clearRect(0, 0, 400, 400);
+        play();
+    }
+}
