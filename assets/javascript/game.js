@@ -212,15 +212,16 @@ window.onload = function() {
     hint.onclick = function() {
 
         hints = [
-            ["Did a song with coldplay", "Check my dab", "He put on for his city", "Will teach you how to save money", "Slept on lyricist", "The all seeing eye.", "Rap God"],
+            ["Did a song with coldplay", "Dab of ranch", "He put on for his city", "Will teach you how to save money", "Slept on lyricist", "The all seeing eye.", "Rap God"],
             ["Practice", "Mamba", "30 Hours", "Ugliest player ever", "ACL 1st Round: never forget"],
             ["Ravens former LB", "Deflated", "I Gronk", "The glove dont fit.", "Those Dreads!"]
         ];
 
         var categoryIndex = categories.indexOf(chosenCategory);
         var hintIndex = chosenCategory.indexOf(word);
-        showClue.innerHTML = "Clue: - " + hints[categoryIndex][hintIndex];
-    };
+        showClue.innerHTML = "Clue: - " + hints [categoryIndex][hintIndex];
+        console.log(hints [categoryIndex][hintIndex]);
+    }; //broken, some work, most dont.
 
     // Reset
 
